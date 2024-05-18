@@ -74,7 +74,16 @@ def create_3d_plot(graph):
             plotter.add_mesh(poly, color=color, show_edges=True, edge_color='black')
         else:
             print(f"Skipping large element at node {node} due to size threshold")
-    plotter.add_axes()
+    
+    camera = plotter.camera
+    camera.position = (0, -1, 0)
+    camera.focal_point = (0, 0, 0)
+    camera.view_up = (0, 1, 0)
+    plotter.camera = camera
+    plotter.view_xy()
+    plotter.camera.roll += 0
+    
+    plotter.add_axes()    
     plotter.show()
 
 cif_filename = 'adder2.cif'
